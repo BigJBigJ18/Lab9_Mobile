@@ -1,3 +1,6 @@
 public enum Tarif {
-    OFFICE,PRIVATE,GROUP
+    OFFICE,
+    PRIVATE,
+    GROUP
+
 }

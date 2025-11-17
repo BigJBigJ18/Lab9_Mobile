@@ -1,6 +1,8 @@
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
 public class Mobile {
     private String owner;
@@ -40,7 +42,7 @@ public class Mobile {
     }
 
     public void setDateOfPurchase(LocalDate dateOfPurchase) {
-        if(dateOfPurchase==null){
+        if(dateOfPurchase==null || dateOfPurchase.isAfter(LocalDate.now())){
             dateOfPurchase=LocalDate.of(2024, 1, 1);
         }
         this.dateOfPurchase = dateOfPurchase;
@@ -73,5 +75,27 @@ public class Mobile {
         return null;
     }
 
+    public Period howLong(){
+        return dateOfPurchase.until(LocalDate.now());
+    }
 
+    public Period howMuchLonger(){
+        Period t=LocalDate.now().until(dateOfPurchase.plusYears(runtime));
+        if(t.getYears()==0 && t.getMonths()==0 && t.getDays()==0){
+            return null;
+        }
+        return t;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Mobile mobile = (Mobile) o;
+        return locked == mobile.locked && runtime == mobile.runtime && Objects.equals(owner, mobile.owner) && tarif == mobile.tarif && Objects.equals(phoneNumber, mobile.phoneNumber) && Objects.equals(dateOfPurchase, mobile.dateOfPurchase);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner, tarif, phoneNumber, dateOfPurchase, locked, runtime);
+    }
 }
