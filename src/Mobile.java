@@ -41,6 +41,10 @@ public class Mobile {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
     public void setDateOfPurchase(LocalDate dateOfPurchase) {
         if(dateOfPurchase==null || dateOfPurchase.isAfter(LocalDate.now())){
             dateOfPurchase=LocalDate.of(2024, 1, 1);
@@ -48,11 +52,27 @@ public class Mobile {
         this.dateOfPurchase = dateOfPurchase;
     }
 
+    public LocalDate getDateOfPurchase(){
+        return dateOfPurchase;
+    }
+
     public void setRuntime(int runtime) {
         if(runtime<0){
             runtime=0;
         }
         this.runtime = runtime;
+    }
+
+    public void setLocked(boolean b){
+        this.locked=b;
+    }
+
+    public boolean isLocked(){
+        return locked;
+    }
+
+    public int getRuntime(){
+        return runtime;
     }
 
     public String toString() {
