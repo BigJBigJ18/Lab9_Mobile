@@ -101,7 +101,7 @@ public class Mobile {
 
     public Period howMuchLonger(){
         Period t=LocalDate.now().until(dateOfPurchase.plusYears(runtime));
-        if(t.getYears()==0 && t.getMonths()==0 && t.getDays()==0){
+        if(t.getYears()<=0 && t.getMonths()<=0 && t.getDays()<=0){
             return null;
         }
         return t;

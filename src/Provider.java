@@ -35,7 +35,7 @@ public class Provider {
     public List<Mobile> expiredMobiles(){
         List<Mobile> returns=new ArrayList<>();
         for (Mobile m:mobiles){
-            if(m.getDateOfPurchase().plusYears(m.getRuntime()).isAfter(LocalDate.now())){
+            if(m.getDateOfPurchase().plusYears(m.getRuntime()).isBefore(LocalDate.now())){
                 m.setLocked(true);
                 returns.add(m);
             }
